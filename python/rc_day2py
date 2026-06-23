@@ -1,0 +1,12 @@
+import datetime
+
+from a01_hello import main as hello_main
+
+def main():
+    hello_main()
+    now = datetime.datetime.now()
+    print(f"Current date and time: {now}")
+if __name__ == "__main__":
+    main()
+    
+
