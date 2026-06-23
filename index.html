@@ -68,3 +68,236 @@
     font-size: 0.95rem;
     margin-bottom: 12px;
   }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+    margin: 0 0 14px 0;
+  }
+
+  .hero-content p.tagline {
+    font-size: 1.15rem;
+    color: #d8dee6;
+    margin: 0;
+  }
+
+  main {
+    max-width: 900px;
+    margin: -40px auto 0;
+    padding: 0 6% 80px;
+    position: relative;
+    z-index: 3;
+  }
+
+  section.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(22, 38, 58, 0.12);
+    padding: 40px 44px;
+    margin-bottom: 32px;
+  }
+
+  section.card h2 {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin: 0 0 24px 0;
+    border-bottom: 2px solid #f0e6d2;
+    padding-bottom: 10px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    row-gap: 14px;
+    column-gap: 12px;
+  }
+
+  .info-grid dt {
+    font-weight: 700;
+    color: var(--navy-light);
+  }
+
+  .info-grid dd {
+    margin: 0;
+  }
+
+  .info-grid a {
+    color: var(--navy-light);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .info-grid a:hover {
+    color: var(--gold);
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .badge {
+    background: #f0e6d2;
+    color: var(--navy-light);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+
+  .edu-item {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .edu-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .edu-item h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    color: var(--navy-light);
+  }
+
+  .edu-item p {
+    margin: 0;
+    color: #5a6472;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .link-card {
+    display: block;
+    text-decoration: none;
+    background: var(--navy);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background 0.15s ease;
+  }
+
+  .link-card span {
+    display: block;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    margin-top: 4px;
+  }
+
+  .link-card:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .link-card:hover span {
+    color: var(--navy);
+  }
+
+  footer {
+    text-align: center;
+    color: #8a93a0;
+    font-size: 0.85rem;
+    padding: 30px 0;
+  }
+
+  @media (max-width: 600px) {
+    header.hero { padding: 60px 6% 60px; }
+    .hero-content h1 { font-size: 2.1rem; }
+    section.card { padding: 28px 24px; }
+    .info-grid { grid-template-columns: 100px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">ABOUT ME</div>
+      <h1>안녕하세요, 오시원입니다.</h1>
+      <p class="tagline">국립공주대학교 지능형모빌리티공학과에서 미래의 모빌리티 기술을 공부하고 있는 학생입니다.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="card">
+      <h2>기본 정보</h2>
+      <dl class="info-grid">
+        <dt>이름</dt>
+        <dd>오시원</dd>
+
+        <dt>사는곳</dt>
+        <dd>전라북도 전주</dd>
+
+        <dt>출생년도</dt>
+        <dd>2004년</dd>
+
+        <dt>MBTI</dt>
+        <dd>INFP</dd>
+
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/shiwon0720" target="_blank">github.com/shiwon0720</a></dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2>학력</h2>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div>
+          <h3>국립공주대학교 · 지능형모빌리티공학과</h3>
+          <p>2학년 재학중</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>자기소개</h2>
+      <p>안녕하세요! 전라북도 전주에서 나고 자라 지금은 국립공주대학교 지능형모빌리티공학과에서 미래 모빌리티 기술을 배우고 있는 오시원입니다. 새로운 것을 배우고 만들어보는 걸 좋아하며, 꾸준히 성장하는 개발자가 되기 위해 노력하고 있습니다.</p>
+      <div class="badge-row">
+        <span class="badge">지능형모빌리티공학</span>
+        <span class="badge">2학년</span>
+        <span class="badge">전주</span>
+        <span class="badge">INFP</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>링크</h2>
+      <div class="links-grid">
+        <a class="link-card" href="https://github.com/shiwon0720" target="_blank">
+          GitHub
+          <span>github.com/shiwon0720</span>
+        </a>
+        <a class="link-card" href="#" target="_blank">
+          팀원(1차)
+          <span>팀 소개 페이지로 이동</span>
+        </a>
+        <a class="link-card" href="#" target="_blank">
+          팀 레포지토리
+          <span>팀 프로젝트 레포지토리</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 오시원. All rights reserved.
+  </footer>
+
+</body>
+</html>
