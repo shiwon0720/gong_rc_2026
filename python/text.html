@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>simple text</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    background: #f3f1ec;
+  }
+
+  header {
+    background: #16263a;
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .status {
+    font-size: 0.8rem;
+    color: #e0bd72;
+  }
+
+  main {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    border: 1px solid #d8d2c2;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #1b2a3d;
+    background: #fff;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: #c79a45;
+  }
+
+  .button-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  button {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  #saveBtn {
+    background: #16263a;
+    color: #fff;
+  }
+
+  #saveBtn:hover {
+    background: #c79a45;
+    color: #16263a;
+  }
+
+  #loadBtn {
+    background: #e8e3d6;
+    color: #1b2a3d;
+  }
+
+  #loadBtn:hover {
+    background: #d8d2c2;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>메모</h1>
+    <span class="status" id="status"></span>
+  </header>
+
+  <main>
+    <textarea id="memo" placeholder="메모를 입력하세요..."></textarea>
+    <div class="button-row">
+      <button id="loadBtn">불러오기</button>
+      <button id="saveBtn">저장하기</button>
+    </div>
+  </main>
+
+  <script>
+    const memoEl = document.getElementById("memo");
+    const statusEl = document.getElementById("status");
+    const saveBtn = document.getElementById("saveBtn");
+    const loadBtn = document.getElementById("loadBtn");
+
+    function showStatus(msg) {
+      statusEl.textContent = msg;
+      setTimeout(() => { statusEl.textContent = ""; }, 2000);
+    }
+
+    async function loadMemo() {
+      try {
+        const result = await window.pywebview.api.load_memo();
+        memoEl.value = result.text;
+        showStatus("불러오기 완료");
+      } catch (err) {
+        showStatus("불러오기 실패: 저장된 메모가 없습니다");
+      }
+    }
+
+    async function saveMemo() {
+      try {
+        const result = await window.pywebview.api.save_memo(memoEl.value);
+        showStatus("저장 완료");
+      } catch (err) {
+        showStatus("저장 실패");
+      }
+    }
+
+    saveBtn.addEventListener("click", saveMemo);
+    loadBtn.addEventListener("click", loadMemo);
+
+    window.addEventListener("pywebviewready", () => {
+      loadMemo();
+    });
+  </script>
+
+</body>
+</html>
