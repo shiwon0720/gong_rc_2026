@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탁상시계</title>
+<style>
+  :root {
+    --navy: #16263a;
+    --navy-light: #1b2a3d;
+    --gold: #c79a45;
+    --gold-light: #e0bd72;
+    --bg: #f3f1ec;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Pretendard", sans-serif;
+    background: var(--bg);
+  }
+
+  .desk-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .clock-body {
+    background: var(--navy);
+    border-radius: 24px;
+    padding: 36px 48px;
+    box-shadow: 0 20px 40px rgba(22, 38, 58, 0.25);
+    position: relative;
+    text-align: center;
+  }
+
+  .clock-body::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    border: 1px solid rgba(224, 189, 114, 0.25);
+    border-radius: 14px;
+    pointer-events: none;
+  }
+
+  .ampm {
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .time {
+    color: #fff;
+    font-size: 4.2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .time .sec {
+    color: var(--gold);
+    font-size: 2.2rem;
+    margin-left: 6px;
+  }
+
+  .date {
+    color: #d8dee6;
+    font-size: 1.05rem;
+    margin-top: 10px;
+  }
+
+  .stand {
+    width: 160px;
+    height: 18px;
+    background: var(--gold);
+    border-radius: 0 0 10px 10px;
+    margin-top: -2px;
+  }
+
+  .stand::after {
+    content: "";
+    display: block;
+    width: 220px;
+    height: 8px;
+    background: var(--gold-light);
+    border-radius: 4px;
+    margin: 4px auto 0;
+  }
+</style>
+</head>
+<body>
+
+  <div class="desk-clock">
+    <div class="clock-body">
+      <div class="ampm" id="ampm"></div>
+      <div class="time">
+        <span id="time">00:00</span><span class="sec" id="sec">00</span>
+      </div>
+      <div class="date" id="date"></div>
+    </div>
+    <div class="stand"></div>
+  </div>
+
+  <script>
+    const ampmEl = document.getElementById("ampm");
+    const timeEl = document.getElementById("time");
+    const secEl = document.getElementById("sec");
+    const dateEl = document.getElementById("date");
+
+    const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function tick() {
+      const now = new Date();
+      let hours = now.getHours();
+      const ampm = hours < 12 ? "오전" : "오후";
+      hours = hours % 12;
+      if (hours === 0) hours = 12;
+
+      ampmEl.textContent = ampm;
+      timeEl.textContent = `${pad(hours)}:${pad(now.getMinutes())}`;
+      secEl.textContent = pad(now.getSeconds());
+      dateEl.textContent = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일 (${weekdays[now.getDay()]})`;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+
+</body>
+</html>
